@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
+    public GameManager manager;
     public void PlayAgain()
     {
 
@@ -11,7 +12,7 @@ public class GameOver : MonoBehaviour
 
     public void mainMenu()
     {
-
+        manager.currentState = GameManager.gameStates.MainMenu;
     }
 
     public void QuitGame()

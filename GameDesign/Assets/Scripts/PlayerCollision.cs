@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    GameManager manager;
+    public GameManager manager;
 
     public PlayerMovement movement;
 

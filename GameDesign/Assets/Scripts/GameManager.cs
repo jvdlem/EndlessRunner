@@ -12,11 +12,17 @@ public class GameManager : MonoBehaviour
     }
     public gameStates currentState;
 
-    public GameObject deathscreen;
+    public GameObject deathScreen;
+    public GameObject menuScreen;
+
+    public Points points;
+    float rememberIncrement;
+
+    public bool obstaclesMove;
     // Start is called before the first frame update
     void Start()
     {
-
+        rememberIncrement = points.pointsIncrement;
     }
 
     // Update is called once per frame
@@ -25,13 +31,24 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case gameStates.MainMenu:
+                menuScreen.gameObject.SetActive(true);
+                obstaclesMove = false;
+                points.text.gameObject.SetActive(false);
+                
+
                 break;
 
             case gameStates.Playing:
+                menuScreen.gameObject.SetActive(false);
+                obstaclesMove = true;
+                points.text.gameObject.SetActive(true);
                 break;
 
             case gameStates.GameOver:
-                deathscreen.SetActive(true);
+                deathScreen.SetActive(true);
+                obstaclesMove = false;
+
+                points.pointsIncrement = 0;
                 break;
         }
     }
