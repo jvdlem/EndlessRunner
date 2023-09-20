@@ -1820,7 +1820,7 @@ GameObject:
   - component: {fileID: 1603802338}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1841,7 +1841,7 @@ MonoBehaviour:
   deathScreen: {fileID: 1281479079}
   menuScreen: {fileID: 625583217}
   points: {fileID: 1619037567}
-  obstaclesMove: 0
+  obstaclesSpawn: 0
 --- !u!4 &1603802339
 Transform:
   m_ObjectHideFlags: 0
@@ -2534,6 +2534,7 @@ MonoBehaviour:
   - {fileID: 8552453988954999894, guid: e92f4a741fff6164c84063b62540733e, type: 3}
   obstacles: []
   scripts: []
+  manager: {fileID: 1603802338}
   spawnTimer: 0
   spawnSpeed: 0.01
   spawnThreshhold: 9

@@ -7,6 +7,7 @@ public class SpawnManager : MonoBehaviour
     public List<GameObject> preFabs = new List<GameObject> ();
     public List<GameObject> obstacles = new List<GameObject>();
     public List<ObstacleMovement> scripts = new List<ObstacleMovement>();
+    public GameManager manager;
     public float spawnTimer = 0;
     public float spawnSpeed = 0;
     public float spawnThreshhold = 0;
@@ -20,15 +21,18 @@ public class SpawnManager : MonoBehaviour
     }
     private void Update()
     {
-        if (movementSpeed < moventSpeedCap)
+        if (manager.obstaclesSpawn)
         {
-            movementSpeed += movementSpeedIncrease;
-        }
-        spawnTimer += spawnSpeed;
-        if (spawnTimer > spawnThreshhold)
-        {
-            spawnTimer = 0;
-            spawnObstacle((int)Random.Range(0,obstacles.Count));
+            if (movementSpeed < moventSpeedCap)
+            {
+                movementSpeed += movementSpeedIncrease;
+            }
+            spawnTimer += spawnSpeed;
+            if (spawnTimer > spawnThreshhold)
+            {
+                spawnTimer = 0;
+                spawnObstacle((int)Random.Range(0, obstacles.Count));
+            }
         }
     }
 
