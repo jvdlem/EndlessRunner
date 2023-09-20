@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
         GameOver
     }
     public gameStates currentState;
+
+    public GameObject deathscreen;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             case gameStates.GameOver:
+                deathscreen.SetActive(true);
                 break;
         }
     }

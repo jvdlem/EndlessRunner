@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
+    GameManager manager;
+
     public PlayerMovement movement;
 
     private void OnCollisionEnter(Collision collision)
@@ -16,6 +18,7 @@ public class PlayerCollision : MonoBehaviour
         if (collision.transform.tag == "Obstacle")
         {
             Debug.Log("Death");
+            manager.currentState = GameManager.gameStates.GameOver;
             movement.enabled = false;
         }
 
