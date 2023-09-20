@@ -4,29 +4,56 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public List<ObstacleMovement> preFabs = new List<ObstacleMovement>();
+    public List<GameObject> preFabs = new List<GameObject> ();
+    public List<GameObject> obstacles = new List<GameObject>();
+    public List<ObstacleMovement> scripts = new List<ObstacleMovement>();
     public float spawnTimer = 0;
     public float spawnSpeed = 0;
     public float spawnThreshhold = 0;
     public float movementSpeed = 0;
     public float movementSpeedIncrease = 0;
+    public float moventSpeedCap = 100;
 
-
+    private void Start()
+    {
+        spawnPrefabs();
+    }
     private void Update()
     {
-        movementSpeed += movementSpeedIncrease;
+        if (movementSpeed < moventSpeedCap)
+        {
+            movementSpeed += movementSpeedIncrease;
+        }
         spawnTimer += spawnSpeed;
         if (spawnTimer > spawnThreshhold)
         {
             spawnTimer = 0;
-            spawnObstacle(preFabs[(int)Random.Range(0, preFabs.Count)]);
+            spawnObstacle((int)Random.Range(0,obstacles.Count));
         }
     }
 
-    private void spawnObstacle(ObstacleMovement objects)
+    private void spawnObstacle(int index)
     {
-        objects.enabled = true;
-        objects.moveSpeed = movementSpeed;
-        objects.transform.position = objects.spawnPositions[Random.Range(0, objects.spawnPositions.Count)]; 
+        if (scripts[index].canSpawn)
+        {
+            ObstacleMovement currentObjScript = scripts[index];
+            GameObject currentObj = obstacles[index];
+            currentObjScript.canSpawn = false;
+            currentObj.transform.position = currentObjScript.spawnPositions[Random.Range(0, currentObjScript.spawnPositions.Count)];
+            currentObj.SetActive(true);
+            currentObjScript.moveSpeed = movementSpeed;
+        }
+    }
+
+    private void spawnPrefabs()
+    {
+        for (int i = 0; i < preFabs.Count; i++)
+        {
+            GameObject obj =  Instantiate(preFabs[i],this.transform.position,this.transform.rotation);
+            obstacles.Add(obj);
+            obj.SetActive(false);
+            scripts.Add(obj.GetComponent<ObstacleMovement>());
+        }
+    
     }
 }
