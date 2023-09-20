@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3807346841182969464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3807346841182969466}
+  - component: {fileID: 3807346841182969465}
+  m_Layer: 0
+  m_Name: Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3807346841182969466
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3807346841182969464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -7.91, z: 19.28}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3807346841182969465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3807346841182969464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24cb652b41363cc43bf7ce77f8ffe0a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preFabs:
+  - {fileID: 8552453988954999894, guid: a91c60f9a7e90a14dbd9c9afdc02f1cf, type: 3}
+  - {fileID: 8552453988954999894, guid: a91c60f9a7e90a14dbd9c9afdc02f1cf, type: 3}
+  - {fileID: 8552453988954999894, guid: a91c60f9a7e90a14dbd9c9afdc02f1cf, type: 3}
+  - {fileID: 8552453988954999894, guid: a91c60f9a7e90a14dbd9c9afdc02f1cf, type: 3}
+  - {fileID: 8552453988954999894, guid: a91c60f9a7e90a14dbd9c9afdc02f1cf, type: 3}
+  - {fileID: 8552453988954999894, guid: e92f4a741fff6164c84063b62540733e, type: 3}
+  - {fileID: 8552453988954999894, guid: 86a3850fbd35b8a4c9e7f9f350e525e0, type: 3}
+  - {fileID: 8552453988954999894, guid: 86a3850fbd35b8a4c9e7f9f350e525e0, type: 3}
+  - {fileID: 8552453988954999894, guid: 86a3850fbd35b8a4c9e7f9f350e525e0, type: 3}
+  - {fileID: 8552453988954999894, guid: e92f4a741fff6164c84063b62540733e, type: 3}
+  - {fileID: 8552453988954999894, guid: e92f4a741fff6164c84063b62540733e, type: 3}
+  - {fileID: 8552453988954999894, guid: e92f4a741fff6164c84063b62540733e, type: 3}
+  obstacles: []
+  scripts: []
+  spawnTimer: 0
+  spawnSpeed: 0.01
+  spawnThreshhold: 9
+  movementSpeed: 10
+  movementSpeedIncrease: 0.001
+  moventSpeedCap: 50
