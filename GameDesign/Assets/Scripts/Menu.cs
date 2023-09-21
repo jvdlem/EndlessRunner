@@ -8,7 +8,7 @@ public class Menu : MonoBehaviour
 
     public void play()
     {
-        manager.currentState = GameManager.gameStates.Playing;
+        manager.currentState = GameManager.gameStates.Reset;
     }
 
     public void quit()

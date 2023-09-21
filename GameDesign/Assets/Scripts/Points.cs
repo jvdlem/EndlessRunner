@@ -7,7 +7,7 @@ using TMPro;
 public class Points : MonoBehaviour
 {
     public int points = 0;
-    private float fakePoints = 0;
+    public float fakePoints = 0;
     public float pointsIncrement = 0;
     public TMP_Text text;
     private void FixedUpdate()

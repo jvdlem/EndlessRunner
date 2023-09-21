@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
     public GameManager manager;
     public void PlayAgain()
     {
-
+        manager.currentState = GameManager.gameStates.Reset;
     }
 
     public void mainMenu()

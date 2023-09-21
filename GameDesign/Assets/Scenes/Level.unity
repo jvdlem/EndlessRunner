@@ -11823,9 +11823,12 @@ MonoBehaviour:
   deathScreen: {fileID: 1281479079}
   menuScreen: {fileID: 625583217}
   player: {fileID: 1619037565}
+  rememberPosition: {x: 0, y: 0, z: 0}
   backGroundMusic: {fileID: 1603802340}
   points: {fileID: 1619037567}
+  spawnManager: {fileID: 1876035961}
   obstaclesSpawn: 0
+  obstacleCollision: 0
 --- !u!4 &1603802339
 Transform:
   m_ObjectHideFlags: 0
@@ -12125,6 +12128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   points: 0
+  fakePoints: 0
   pointsIncrement: 0.05
   text: {fileID: 2139346906}
 --- !u!82 &1619037568

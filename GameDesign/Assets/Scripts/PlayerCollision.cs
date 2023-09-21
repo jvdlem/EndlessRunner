@@ -20,8 +20,8 @@ public class PlayerCollision : MonoBehaviour
 
         if (collision.transform.tag == "Obstacle")
         {
-            manager.currentState = GameManager.gameStates.GameOver;
-            movement.enabled = false;
+            manager.obstacleCollision = true;
+            //movement.enabled = false;
         }
 
         if (collision.transform.tag == "Coin")
@@ -32,6 +32,14 @@ public class PlayerCollision : MonoBehaviour
         if (collision.transform.tag == "PowerUp")
         {
         
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.transform.tag == "Obstacle")
+        {
+            manager.obstacleCollision = false;
         }
     }
 }

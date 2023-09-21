@@ -8,23 +8,33 @@ public class GameManager : MonoBehaviour
     {
         MainMenu,
         Playing,
-        GameOver
+        GameOver,
+        Reset
     }
     public gameStates currentState;
 
     public GameObject deathScreen;
     public GameObject menuScreen;
+
     public PlayerMovement player;
+    public Vector3 rememberPosition;
+
     public AudioSource backGroundMusic;
 
     public Points points;
     float rememberIncrement;
 
+    public SpawnManager spawnManager;
+    float rememberSpeed;
+
     public bool obstaclesSpawn;
+    public bool obstacleCollision;
     // Start is called before the first frame update
     void Start()
     {
         rememberIncrement = points.pointsIncrement;
+        rememberSpeed = spawnManager.movementSpeed;
+        rememberPosition = player.transform.position;
     }
 
     // Update is called once per frame
@@ -34,6 +44,7 @@ public class GameManager : MonoBehaviour
         {
             case gameStates.MainMenu:
                 menuScreen.gameObject.SetActive(true);
+                deathScreen.SetActive(false);
                 obstaclesSpawn = false;
                 player.canPlay = false;
                 points.text.gameObject.SetActive(false);
@@ -42,23 +53,41 @@ public class GameManager : MonoBehaviour
                 break;
 
             case gameStates.Playing:
-                player.canPlay = true;
-                menuScreen.gameObject.SetActive(false);
-                obstaclesSpawn = true;
-                points.text.gameObject.SetActive(true);
 
-                points.pointsIncrement = rememberIncrement;
                 if (!backGroundMusic.isPlaying)
                 {
                     backGroundMusic.Play();
+                }
+                if (obstacleCollision)
+                {
+                    currentState = gameStates.GameOver;
                 }
                 break;
 
             case gameStates.GameOver:
                 deathScreen.SetActive(true);
+                menuScreen.SetActive(false);
                 obstaclesSpawn = false;
                 player.canPlay = false;
                 points.pointsIncrement = 0;
+                break;
+
+            case gameStates.Reset:
+                for (int i = 0; i < spawnManager.obstacles.Count; i++)
+                {
+                    spawnManager.obstacles[i].SetActive(false);
+                }
+                player.transform.position = rememberPosition;
+                obstacleCollision = false;
+                player.canPlay = true;
+                menuScreen.gameObject.SetActive(false);
+                deathScreen.SetActive(false);
+                points.fakePoints = 0;
+                spawnManager.movementSpeed = rememberSpeed;
+                points.pointsIncrement = rememberIncrement;
+                obstaclesSpawn = true;
+                points.text.gameObject.SetActive(true);
+                currentState = gameStates.Playing;
                 break;
         }
     }
