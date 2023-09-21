@@ -14,6 +14,8 @@ public class SpawnManager : MonoBehaviour
     public float movementSpeed = 0;
     public float movementSpeedIncrease = 0;
     public float moventSpeedCap = 100;
+    public float spawnSpeedcap = 0.2f;
+    public float spawnSpeedIncrement = 0.001f;
 
     private void Start()
     {
@@ -28,11 +30,16 @@ public class SpawnManager : MonoBehaviour
                 movementSpeed += movementSpeedIncrease;
             }
             spawnTimer += spawnSpeed;
+            if (spawnSpeed < spawnSpeedcap)
+            {
+                spawnSpeed += spawnSpeedIncrement/1000;
+            }
             if (spawnTimer > spawnThreshhold)
             {
                 spawnTimer = 0;
                 spawnObstacle((int)Random.Range(0, obstacles.Count));
             }
+
         }
     }
 
