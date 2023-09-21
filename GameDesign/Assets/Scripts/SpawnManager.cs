@@ -17,6 +17,8 @@ public class SpawnManager : MonoBehaviour
     public float spawnSpeedcap = 0.2f;
     public float spawnSpeedIncrement = 0.001f;
 
+    public List<GameObject> walls = new List<GameObject> ();  
+
     private void Start()
     {
         spawnPrefabs();

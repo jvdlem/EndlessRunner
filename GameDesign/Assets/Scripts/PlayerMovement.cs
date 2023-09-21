@@ -9,11 +9,15 @@ public class PlayerMovement : MonoBehaviour
     public Vector3 speed = new Vector3(0, 0, 0);
     public bool isOnGround = false;
     public float scaleSize = 1;
+    public float rotateSpeed = 1;
     public bool dubbleJump = false;
     public bool canPlay = false;
     public ParticleSystem slideParticle = null;
     public Vector3 offSetParticle = Vector3.zero;
     public SpawnManager spawner = null;
+    public AudioSource myAudio;
+    public List<AudioClip> audioClips = new List<AudioClip>();
+    public ParticleSystem land = null;
     void Start()
     {
 
@@ -31,10 +35,13 @@ public class PlayerMovement : MonoBehaviour
                 slideParticle.Play();
             }
             var emission = slideParticle.emission;
+            land.gameObject.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z) + offSetParticle;
             slideParticle.gameObject.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z) + offSetParticle;
             slideParticle.gameObject.transform.localScale = new Vector3(this.transform.localScale.y, slideParticle.gameObject.transform.localScale.y, slideParticle.gameObject.transform.localScale.z);
             if (isOnGround)
             {
+                var mainLand = land.main;
+                mainLand.startSpeed = spawner.movementSpeed * spawner.movementSpeed - 100;
                 var main = slideParticle.main;
                 main.startSpeed = spawner.movementSpeed*spawner.movementSpeed-100;
                 emission.rateOverTime = spawner.movementSpeed * spawner.movementSpeed-100;  // Adjust the emission rate as needed when the player is on the ground
@@ -63,8 +70,12 @@ public class PlayerMovement : MonoBehaviour
             }
             if (Input.GetKeyDown("space") && isOnGround)
             {
+                myAudio.clip = audioClips[0];
+                myAudio.Play();
                 jumpInput = true;
                 isOnGround = false;
+                land.Play();
+
             }
             else if (Input.GetKeyDown("space") && !isOnGround && !dubbleJump)
             {
@@ -85,20 +96,21 @@ public class PlayerMovement : MonoBehaviour
             }
             if (Input.GetKey("e"))
             {
-                float rotationIncrement = 1f;
+                float rotationIncrement = rotateSpeed;
                 Quaternion currentRotation = this.transform.rotation;
                 Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, rotationIncrement);
                 this.transform.rotation = newRotation;
             }
             if (Input.GetKey("q"))
             {
-                float rotationIncrement = -1f;
+                float rotationIncrement = -rotateSpeed;
                 Quaternion currentRotation = this.transform.rotation;
                 Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, rotationIncrement);
                 this.transform.rotation = newRotation;
             }
-
-            this.transform.rotation = Quaternion.Euler(0, 0, this.transform.rotation.z);
+            Quaternion rotate = this.transform.rotation;
+            Vector3 rotation = rotate.eulerAngles;
+            this.transform.rotation = Quaternion.Euler(0, 0, rotation.z);
 
             Vector3 force = new Vector3(horizontalInput * speed.x * Time.deltaTime, jumpInput ? speed.y * rb.mass : 0, verticalInput * speed.z * Time.deltaTime);
 

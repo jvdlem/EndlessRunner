@@ -13,6 +13,9 @@ public class PlayerCollision : MonoBehaviour
         if (collision.transform.tag == "Ground")
         {
             movement.isOnGround = true;
+            movement.myAudio.clip = movement.audioClips[1];
+            movement.myAudio.Play();
+            movement.land.Play();
         }
 
         if (collision.transform.tag == "Obstacle")
