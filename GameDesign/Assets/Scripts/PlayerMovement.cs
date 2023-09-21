@@ -26,6 +26,10 @@ public class PlayerMovement : MonoBehaviour
 
         if (canPlay)
         {
+            if (!slideParticle.isPlaying)
+            {
+                slideParticle.Play();
+            }
             var emission = slideParticle.emission;
             slideParticle.gameObject.transform.position = new Vector3(this.transform.position.x, 0, this.transform.position.z) + offSetParticle;
             slideParticle.gameObject.transform.localScale = new Vector3(this.transform.localScale.y, slideParticle.gameObject.transform.localScale.y, slideParticle.gameObject.transform.localScale.z);
@@ -94,7 +98,8 @@ public class PlayerMovement : MonoBehaviour
                 this.transform.rotation = newRotation;
             }
 
-            // Calculate the force vector
+            this.transform.rotation = Quaternion.Euler(0, 0, this.transform.rotation.z);
+
             Vector3 force = new Vector3(horizontalInput * speed.x * Time.deltaTime, jumpInput ? speed.y * rb.mass : 0, verticalInput * speed.z * Time.deltaTime);
 
             // Apply the force
