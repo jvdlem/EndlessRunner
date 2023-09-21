@@ -18,7 +18,7 @@ public class PlayerCollision : MonoBehaviour
             movement.land.Play();
         }
 
-        if (collision.transform.tag == "Obstacle")
+        if (collision.transform.tag == "Obstacle" || collision.transform.tag == "FallingNet")
         {
             manager.obstacleCollision = true;
             //movement.enabled = false;
@@ -37,7 +37,7 @@ public class PlayerCollision : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.transform.tag == "Obstacle")
+        if(collision.transform.tag == "Obstacle" || collision.transform.tag == "FallingNet")
         {
             manager.obstacleCollision = false;
         }
