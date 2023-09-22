@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
         Highscore,
         Playing,
         GameOver,
+        Shop,
+        Controls,
+        Customize,
         Reset
     }
     public gameStates currentState;
@@ -17,6 +20,9 @@ public class GameManager : MonoBehaviour
     public GameOver deathScreen;
     public GameObject menuScreen;
     public GameObject highscoreScreen;
+    public GameObject shopScreen;
+    public GameObject customizeScreen;
+    public GameObject tutorialScreen;
 
     public PlayerMovement player;
     public Vector3 rememberPosition;
@@ -48,6 +54,9 @@ public class GameManager : MonoBehaviour
                 menuScreen.gameObject.SetActive(true);
                 deathScreen.gameObject.SetActive(false);
                 highscoreScreen.gameObject.SetActive(false);
+                customizeScreen.gameObject.SetActive(false);
+                tutorialScreen.gameObject.SetActive(false);
+                shopScreen.gameObject.SetActive(false);
                 obstaclesSpawn = false;
                 player.canPlay = false;
                 points.text.gameObject.SetActive(false);
@@ -58,6 +67,9 @@ public class GameManager : MonoBehaviour
             case gameStates.Highscore:
                 menuScreen.gameObject.SetActive(false);
                 highscoreScreen.gameObject.SetActive(true);
+                customizeScreen.gameObject.SetActive(false);
+                tutorialScreen.gameObject.SetActive(false);
+                shopScreen.gameObject.SetActive(false);
                 break;
 
             case gameStates.Playing:
@@ -78,8 +90,12 @@ public class GameManager : MonoBehaviour
                     deathScreen.gameObject.SetActive(true);
                     deathScreen.scorePopup.SetActive(true);
                     deathScreen.menuButtons.SetActive(false);
+
                 }
                 menuScreen.SetActive(false);
+                customizeScreen.gameObject.SetActive(false);
+                tutorialScreen.gameObject.SetActive(false);
+                shopScreen.gameObject.SetActive(false);
                 obstaclesSpawn = false;
                 player.canPlay = false;
                 points.pointsIncrement = 0;
@@ -95,6 +111,9 @@ public class GameManager : MonoBehaviour
                 player.canPlay = true;
                 menuScreen.gameObject.SetActive(false);
                 deathScreen.gameObject.SetActive(false);
+                customizeScreen.gameObject.SetActive(false);
+                tutorialScreen.gameObject.SetActive(false);
+                shopScreen.gameObject.SetActive(false);
                 points.fakePoints = 0;
                 spawnManager.movementSpeed = rememberSpeed;
                 points.pointsIncrement = rememberIncrement;
@@ -102,6 +121,31 @@ public class GameManager : MonoBehaviour
                 points.text.gameObject.SetActive(true);
                 deathScreen.enteredScore = false;
                 currentState = gameStates.Playing;
+                break;
+
+            case gameStates.Controls:
+                menuScreen.gameObject.SetActive(false);
+                highscoreScreen.gameObject.SetActive(false);
+                customizeScreen.gameObject.SetActive(false);
+                tutorialScreen.gameObject.SetActive(true);
+
+                shopScreen.gameObject.SetActive(false);
+                break;
+            case gameStates.Customize:
+                menuScreen.gameObject.SetActive(false);
+                highscoreScreen.gameObject.SetActive(false);
+                customizeScreen.gameObject.SetActive(true);
+                tutorialScreen.gameObject.SetActive(false);
+
+                shopScreen.gameObject.SetActive(false);
+                break;
+            case gameStates.Shop:
+                menuScreen.gameObject.SetActive(false);
+                highscoreScreen.gameObject.SetActive(false);
+                customizeScreen.gameObject.SetActive(false);
+                tutorialScreen.gameObject.SetActive(false);
+
+                shopScreen.gameObject.SetActive(true);
                 break;
         }
     }

@@ -18,10 +18,14 @@ public class InventoryInteractot : MonoBehaviour
     private void Start()
     {
         mat.color = inventoryPlayer.colors[inventoryPlayer.colorIndex];
-        ColorPanel.color = inventoryPlayer.colors[inventoryPlayer.colorIndex];
+        if (ColorPanel != null)
+        {
+            ColorPanel.color = inventoryPlayer.colors[inventoryPlayer.colorIndex];
+            text.text = "Symbol:" + inventoryPlayer.names[inventoryPlayer.symbolIndex];
+        }
         mat.SetTexture("_EmissionMap", inventoryPlayer.textures[inventoryPlayer.symbolIndex]);
         mat.SetColor("_EmissionColor", Color.white * inventoryPlayer.emmisonStrength[inventoryPlayer.symbolIndex]);
-        text.text = "Symbol:" + inventoryPlayer.names[inventoryPlayer.symbolIndex];
+
     }
     private void Awake()
     {
