@@ -12,18 +12,24 @@ public class GameOver : MonoBehaviour
 
     public TMP_InputField inputField;
 
+    public HighScore highScore; // Reference to your HighScore Scriptable Object
     public LocalHighscore localHighscore;
-    public string nameInput;
     public bool enteredScore;
 
     public void enteredScoreName()
     {
-        // Create a new ScoreEntry and add it to the list
+        // Create a new HighScore object and add it to the HighScoreManager
+        HighScore newScore = ScriptableObject.CreateInstance<HighScore>();
+        newScore.playerName = inputField.text;
+        newScore.score = manager.points.points;
+/*
         ScoreEntry newEntry = new ScoreEntry(inputField.text, manager.points.points);
-        localHighscore.scores.Add(newEntry);
+        highScore.playerName = newEntry.playerName;
+        highScore.score = newEntry.score;*/
 
-        // Sort the list by score in descending order
-        localHighscore.scores.Sort((x, y) => y.score.CompareTo(x.score));
+        localHighscore.scores.Add(newScore);
+        localHighscore.SaveHighScores();
+
         enteredScore = true;
         scorePopup.SetActive(false);
         menuButtons.SetActive(true);

@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     public GameOver deathScreen;
     public GameObject menuScreen;
     public GameObject highscoreScreen;
+    public LocalHighscore localHighscore;
 
     public PlayerMovement player;
     public Vector3 rememberPosition;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        localHighscore.LoadHighScores();
         rememberIncrement = points.pointsIncrement;
         rememberSpeed = spawnManager.movementSpeed;
         rememberPosition = player.transform.position;
