@@ -7,14 +7,16 @@ public class GameManager : MonoBehaviour
     public enum gameStates
     {
         MainMenu,
+        Highscore,
         Playing,
         GameOver,
         Reset
     }
     public gameStates currentState;
 
-    public GameObject deathScreen;
+    public GameOver deathScreen;
     public GameObject menuScreen;
+    public GameObject highscoreScreen;
 
     public PlayerMovement player;
     public Vector3 rememberPosition;
@@ -44,12 +46,18 @@ public class GameManager : MonoBehaviour
         {
             case gameStates.MainMenu:
                 menuScreen.gameObject.SetActive(true);
-                deathScreen.SetActive(false);
+                deathScreen.gameObject.SetActive(false);
+                highscoreScreen.gameObject.SetActive(false);
                 obstaclesSpawn = false;
                 player.canPlay = false;
                 points.text.gameObject.SetActive(false);
                 points.pointsIncrement = 0;
 
+                break;
+
+            case gameStates.Highscore:
+                menuScreen.gameObject.SetActive(false);
+                highscoreScreen.gameObject.SetActive(true);
                 break;
 
             case gameStates.Playing:
@@ -65,7 +73,12 @@ public class GameManager : MonoBehaviour
                 break;
 
             case gameStates.GameOver:
-                deathScreen.SetActive(true);
+                if (!deathScreen.enteredScore)
+                {
+                    deathScreen.gameObject.SetActive(true);
+                    deathScreen.scorePopup.SetActive(true);
+                    deathScreen.menuButtons.SetActive(false);
+                }
                 menuScreen.SetActive(false);
                 obstaclesSpawn = false;
                 player.canPlay = false;
@@ -81,12 +94,13 @@ public class GameManager : MonoBehaviour
                 obstacleCollision = false;
                 player.canPlay = true;
                 menuScreen.gameObject.SetActive(false);
-                deathScreen.SetActive(false);
+                deathScreen.gameObject.SetActive(false);
                 points.fakePoints = 0;
                 spawnManager.movementSpeed = rememberSpeed;
                 points.pointsIncrement = rememberIncrement;
                 obstaclesSpawn = true;
                 points.text.gameObject.SetActive(true);
+                deathScreen.enteredScore = false;
                 currentState = gameStates.Playing;
                 break;
         }

@@ -11,6 +11,11 @@ public class Menu : MonoBehaviour
         manager.currentState = GameManager.gameStates.Reset;
     }
 
+    public void highscore()
+    {
+        manager.currentState = GameManager.gameStates.Highscore;
+    }
+
     public void quit()
     {
         Application.Quit();
