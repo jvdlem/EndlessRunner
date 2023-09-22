@@ -14,28 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorIndex: 0
   symbolIndex: 0
-  coins: 9150
+  coins: 0
   name: 
   HighScore: 0
   colors:
   - {r: 0.28235295, g: 0.89019614, b: 0.2392157, a: 1}
   colorGotten: 
-  symbolGotten: 0000000001000000040000000500000006000000
+  symbolGotten: 00000000
   textures:
   - {fileID: 2800000, guid: a6db9acad09a63641b26ef3acc7f5960, type: 3}
-  - {fileID: 2800000, guid: cac0e212890f43b4eaf910a6f86e3aff, type: 3}
-  - {fileID: 2800000, guid: b4a37c3c5e5085447a914bd9f92b632a, type: 3}
-  - {fileID: 2800000, guid: be315fa5fa4236746ad88fb3b37b79ac, type: 3}
-  - {fileID: 2800000, guid: b25503fc0745d314ebb2bd100f21a3f4, type: 3}
   emmisonStrength:
-  - 1.1
-  - 1.3
-  - 1.3
-  - 1.3
-  - 1.3
+  - 0
   names:
   - None
-  - Bubbles
-  - Nature
-  - Simple
-  - Grid

@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Level Jordi.unity
+    guid: db4d17dbaa1e3e74f8b3010b2539607e
   m_configObjects: {}
