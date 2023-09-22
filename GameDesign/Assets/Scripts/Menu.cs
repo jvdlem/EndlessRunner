@@ -30,7 +30,10 @@ public class Menu : MonoBehaviour
     {
         manager.currentState = GameManager.gameStates.Controls;
     }
-
+    public void MainMenu()
+    {
+        manager.currentState = GameManager.gameStates.MainMenu;
+    }
     public void quit()
     {
         Application.Quit();
