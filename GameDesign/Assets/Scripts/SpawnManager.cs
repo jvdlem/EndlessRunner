@@ -24,7 +24,7 @@ public class SpawnManager : MonoBehaviour
     {
         spawnPrefabs();
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (manager.obstaclesSpawn)
         {
@@ -44,6 +44,7 @@ public class SpawnManager : MonoBehaviour
             }
 
         }
+
     }
 
     private void spawnObstacle(int index)
@@ -74,7 +75,7 @@ public class SpawnManager : MonoBehaviour
     public void ResetGame()
     {
         spawnTimer = 0;
-        spawnSpeed = 0.01f;
+        spawnSpeed = 0.1f;
         this.movementSpeed = 10;
         for (int i = 0; i < scripts.Count; i++)
         {
