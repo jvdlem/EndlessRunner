@@ -41,10 +41,10 @@ public class PlayerMovement : MonoBehaviour
             if (isOnGround)
             {
                 var mainLand = land.main;
-                mainLand.startSpeed = spawner.movementSpeed * spawner.movementSpeed - 100;
+                mainLand.startSpeed = spawner.movementSpeed * spawner.movementSpeed / 2 - 50;
                 var main = slideParticle.main;
-                main.startSpeed = spawner.movementSpeed*spawner.movementSpeed-100;
-                emission.rateOverTime = spawner.movementSpeed * spawner.movementSpeed-100;  // Adjust the emission rate as needed when the player is on the ground
+                main.startSpeed = spawner.movementSpeed*spawner.movementSpeed/2-50;
+                emission.rateOverTime = spawner.movementSpeed * spawner.movementSpeed/2-50;  // Adjust the emission rate as needed when the player is on the ground
             }
             else
             {
@@ -54,6 +54,8 @@ public class PlayerMovement : MonoBehaviour
             float horizontalInput = 0;
             float verticalInput = 0;
             bool jumpInput = false;
+
+
 
             // Get input values
             if (Input.GetKey("d"))
@@ -108,10 +110,18 @@ public class PlayerMovement : MonoBehaviour
             //    Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, rotationIncrement);
             //    this.transform.rotation = newRotation;
             //}
+
+
             Quaternion rotate = this.transform.rotation;
             Vector3 rotation = rotate.eulerAngles;
             this.transform.rotation = Quaternion.Euler(0, 0, rotation.z);
-
+            if (Input.touchCount > 0)
+            {
+                Touch touch = Input.GetTouch(0);
+                Vector2 pos = touch.position;
+                verticalInput = 0;
+                this.transform.position = new Vector3(pos.x, transform.position.y, transform.position.z);
+            }
             Vector3 force = new Vector3(horizontalInput * speed.x * Time.deltaTime, jumpInput ? speed.y * rb.mass : 0, verticalInput * speed.z * Time.deltaTime);
 
             // Apply the force

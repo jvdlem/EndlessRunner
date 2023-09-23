@@ -21773,13 +21773,13 @@ MonoBehaviour:
   scripts: []
   manager: {fileID: 1603802338}
   spawnTimer: 0
-  spawnSpeed: 0.01
+  spawnSpeed: 0.1
   spawnThreshhold: 9
   movementSpeed: 10
-  movementSpeedIncrease: 0.0001
+  movementSpeedIncrease: 0.001
   moventSpeedCap: 50
-  spawnSpeedcap: 0.2
-  spawnSpeedIncrement: 0.001
+  spawnSpeedcap: 0.4
+  spawnSpeedIncrement: 0.05
   walls:
   - {fileID: 1023975478}
   - {fileID: 263028223}
