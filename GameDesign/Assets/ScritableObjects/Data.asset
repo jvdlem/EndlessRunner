@@ -19,27 +19,11 @@ MonoBehaviour:
   HighScore: 0
   colors:
   - {r: 0.28235295, g: 0.89019614, b: 0.2392157, a: 1}
-  - {r: 1, g: 0, b: 0, a: 1}
-  - {r: 0.42352945, g: 1, b: 0, a: 1}
-  - {r: 0, g: 0.027450982, b: 1, a: 1}
-  - {r: 1, g: 0.5137255, b: 0, a: 1}
-  - {r: 1, g: 0, b: 0.7686275, a: 1}
-  - {r: 0, g: 0, b: 0, a: 1}
-  - {r: 0, g: 1, b: 0.73333335, a: 1}
-  colorGotten: 00000000010000000200000006000000070000000800000005000000
-  symbolGotten: 
+  colorGotten: 
+  symbolGotten: 00000000
   textures:
   - {fileID: 2800000, guid: a6db9acad09a63641b26ef3acc7f5960, type: 3}
-  - {fileID: 2800000, guid: cd36f65753d72b6439d16c867db545b2, type: 3}
-  - {fileID: 2800000, guid: e7f42f8365232de47a55bbd97658d193, type: 3}
-  - {fileID: 2800000, guid: 66a3a15e9fb44334e9ab6bb5e8f6080c, type: 3}
   emmisonStrength:
-  - 1.1
-  - 2
-  - 2.02
-  - 1.2
+  - 0
   names:
   - None
-  - Spider
-  - Grid
-  - Flower
