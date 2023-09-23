@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
-    public List<GameObject> preFabs = new List<GameObject> ();
+    public List<GameObject> preFabs = new List<GameObject>();
     public List<GameObject> obstacles = new List<GameObject>();
     public List<ObstacleMovement> scripts = new List<ObstacleMovement>();
     public GameManager manager;
@@ -17,7 +18,7 @@ public class SpawnManager : MonoBehaviour
     public float spawnSpeedcap = 0.2f;
     public float spawnSpeedIncrement = 0.001f;
 
-    public List<GameObject> walls = new List<GameObject> ();  
+    public List<GameObject> walls = new List<GameObject>();
 
     private void Start()
     {
@@ -34,7 +35,7 @@ public class SpawnManager : MonoBehaviour
             spawnTimer += spawnSpeed;
             if (spawnSpeed < spawnSpeedcap)
             {
-                spawnSpeed += spawnSpeedIncrement/1000;
+                spawnSpeed += spawnSpeedIncrement / 1000;
             }
             if (spawnTimer > spawnThreshhold)
             {
@@ -62,11 +63,29 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < preFabs.Count; i++)
         {
-            GameObject obj =  Instantiate(preFabs[i],this.transform.position,this.transform.rotation);
+            GameObject obj = Instantiate(preFabs[i], this.transform.position, this.transform.rotation);
             obstacles.Add(obj);
             obj.SetActive(false);
             scripts.Add(obj.GetComponent<ObstacleMovement>());
         }
-    
+
+    }
+
+    public void ResetGame()
+    {
+        spawnTimer = 0;
+        spawnSpeed = 0.01f;
+        this.movementSpeed = 10;
+        for (int i = 0; i < scripts.Count; i++)
+        {
+            ObstacleMovement currentObjScript = scripts[i];
+            GameObject currentObj = obstacles[i];
+            currentObj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            currentObjScript.canSpawn = true;
+            currentObjScript.moveSpeed = movementSpeed;
+            currentObj.transform.position = currentObjScript.spawnPositions[Random.Range(0, currentObjScript.spawnPositions.Count)];
+            currentObj.SetActive(false);
+
+        }
     }
 }

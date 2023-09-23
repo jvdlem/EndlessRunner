@@ -121,6 +121,11 @@ public class GameManager : MonoBehaviour
                 points.text.gameObject.SetActive(true);
                 deathScreen.enteredScore = false;
                 currentState = gameStates.Playing;
+                if (backGroundMusic.isPlaying)
+                {
+                    backGroundMusic.Stop();
+                    backGroundMusic.Play();
+                }
                 break;
 
             case gameStates.Controls:

@@ -68,46 +68,46 @@ public class PlayerMovement : MonoBehaviour
             {
                 verticalInput += 1;
             }
-            if (Input.GetKeyDown("space") && isOnGround)
-            {
-                myAudio.clip = audioClips[0];
-                myAudio.Play();
-                jumpInput = true;
-                isOnGround = false;
-                land.Play();
+            //if (Input.GetKeyDown("space") && isOnGround)
+            //{
+            //    myAudio.clip = audioClips[0];
+            //    myAudio.Play();
+            //    jumpInput = true;
+            //    isOnGround = false;
+            //    land.Play();
 
-            }
-            else if (Input.GetKeyDown("space") && !isOnGround && !dubbleJump)
-            {
-                rb.AddForce(Vector3.down * speed.y * rb.mass * 2, ForceMode.Impulse);
-            }
-            if (Input.GetKey("s"))
-            {
-                scaleSize += 0.1f;
-                transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(1, 0.5f, scaleSize), transform.localScale.z);
-            }
-            else
-            {
-                if (scaleSize > 0)
-                {
-                    scaleSize -= 1f;
-                    transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(1, 0.5f, scaleSize), transform.localScale.z);
-                }
-            }
-            if (Input.GetKey("e"))
-            {
-                float rotationIncrement = rotateSpeed;
-                Quaternion currentRotation = this.transform.rotation;
-                Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, rotationIncrement);
-                this.transform.rotation = newRotation;
-            }
-            if (Input.GetKey("q"))
-            {
-                float rotationIncrement = -rotateSpeed;
-                Quaternion currentRotation = this.transform.rotation;
-                Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, rotationIncrement);
-                this.transform.rotation = newRotation;
-            }
+            //}
+            //else if (Input.GetKeyDown("space") && !isOnGround && !dubbleJump)
+            //{
+            //    rb.AddForce(Vector3.down * speed.y * rb.mass * 2, ForceMode.Impulse);
+            //}
+            //if (Input.GetKey("s"))
+            //{
+            //    scaleSize += 0.1f;
+            //    transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(1, 0.5f, scaleSize), transform.localScale.z);
+            //}
+            //else
+            //{
+            //    if (scaleSize > 0)
+            //    {
+            //        scaleSize -= 1f;
+            //        transform.localScale = new Vector3(transform.localScale.x, Mathf.Lerp(1, 0.5f, scaleSize), transform.localScale.z);
+            //    }
+            //}
+            //if (Input.GetKey("e"))
+            //{
+            //    float rotationIncrement = rotateSpeed;
+            //    Quaternion currentRotation = this.transform.rotation;
+            //    Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, rotationIncrement);
+            //    this.transform.rotation = newRotation;
+            //}
+            //if (Input.GetKey("q"))
+            //{
+            //    float rotationIncrement = -rotateSpeed;
+            //    Quaternion currentRotation = this.transform.rotation;
+            //    Quaternion newRotation = currentRotation * Quaternion.Euler(0, 0, rotationIncrement);
+            //    this.transform.rotation = newRotation;
+            //}
             Quaternion rotate = this.transform.rotation;
             Vector3 rotation = rotate.eulerAngles;
             this.transform.rotation = Quaternion.Euler(0, 0, rotation.z);
